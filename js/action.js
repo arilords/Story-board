@@ -4,6 +4,10 @@
 // Assign html speech divs to variables
 var one_speech_div = document.getElementById("first-person-speech");
 var second_speech_div = document.getElementById("second-person-speech");
+
+var head_one = document.getElementsByClassName('head')[0];
+var head_two = document.getElementsByClassName('head')[1];
+
 var speech_div = document.getElementsByClassName("speech");
 // Assigm html buttons to variables
 var continue_btn = document.getElementById("continue-btn");
@@ -58,10 +62,16 @@ function runDialog() {
   if (even_or_odd === 1) {
       one_speech_div.style.display = "inline-block";
       second_speech_div.style.display = "none";
+
+      head_one.style.boxShadow = "0 0 40px white";
+      head_two.style.boxShadow = "none";
   }
   else if (even_or_odd === 0) {
       one_speech_div.style.display = "none";
       second_speech_div.style.display = "inline-block";
+
+      head_one.style.boxShadow = "none";
+      head_two.style.boxShadow = "0 0 40px white";
   }
   else {
       alert("error");

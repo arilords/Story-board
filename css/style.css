@@ -1,9 +1,17 @@
+@font-face {
+  font-family: conthrax;
+  src: url(../fonts/conthrax.ttf); }
+@font-face {
+  font-family: locust;
+  src: url(../fonts/locust.tttf); }
 body {
-  background: url("https://www.vacationhomerentals.com/get_property_thumb4-24680.jpg");
+  background: url("http://media.moddb.com/images/articles/1/181/180861/Galaxy_Rip.jpg");
   background-size: 100% 100%;
   height: 100vh;
   width: 100vw;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 0;
+  box-sizing: border-box; }
 
 .people {
   height: 30rem;
@@ -16,7 +24,6 @@ body {
   border-radius: 100%;
   height: 10rem;
   width: 10rem;
-  box-shadow: 0 0 20px white;
   border: 2px solid black; }
 
 .body {
@@ -25,11 +32,28 @@ body {
   width: 10rem;
   border: 2px solid gray; }
 
-button {
-  position: absolute; }
+.controls {
+  position: absolute;
+  padding: 10px;
+  background: black;
+  border: 3px solid white;
+  color: white;
+  border-radius: 15px; }
+  .controls:hover {
+    background: #333333;
+    box-shadow: 0 0 20px white; }
+  .controls:active {
+    border: 4px solid white;
+    box-shadow: 0 0 30px white; }
 
 #refresh-btn {
-  top: 2rem; }
+  top: 3rem;
+  left: 3rem; }
+
+#continue-btn {
+  top: 3rem;
+  right: 3rem;
+  font-size: 1.5em; }
 
 .show {
   display: inline-block; }
@@ -47,7 +71,7 @@ button {
     background-size: 100% 100%; }
 
 #second-person {
-  left: 70vw; }
+  right: 10vw; }
   #second-person .head {
     background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Color_circles_15_x_20.svg/1280px-Color_circles_15_x_20.svg.png");
     background-size: 100% 100%; }
@@ -61,20 +85,28 @@ button {
   border-radius: 15px;
   padding: 15px;
   position: absolute;
-  display: none; }
+  display: none;
+  font-family: conthrax;
+  font-weight: bold; }
   .speech p {
     margin: 0; }
-  .speech::first-line {
-    font-weight: bold; }
+  .speech::first-letter {
+    font-size: 1.5em; }
 
 #first-person-speech {
-  left: 25vw;
-  top: 5vh;
-  border: 5px solid purple; }
+  left: 40vw;
+  top: 15vh;
+  border: 5px solid white;
+  background: url("https://wallpaperscraft.com/image/dark_circle_gray_black_9834_1920x1080.jpg");
+  background-size: 100% 100%;
+  color: white; }
 
 #second-person-speech {
-  right: 25vw;
-  top: 10vh;
-  border: 5px solid blue; }
+  right: 40vw;
+  top: 25vh;
+  border: 5px solid black;
+  background: url("http://www.tmwallpaper.com/mod/abstract-light/1920x1200/light-abstract-wide-wallpaper-1920x1200-010.jpg");
+  background-size: 100% 100%;
+  color: black; }
 
 /*# sourceMappingURL=style.css.map */
