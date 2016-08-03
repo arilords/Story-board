@@ -1,0 +1,72 @@
+body {
+  background: url("https://www.vacationhomerentals.com/get_property_thumb4-24680.jpg");
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.head,
+#head {
+  height: 5em;
+  width: 5em;
+  border-radius: 100%;
+  z-index: 1;
+  position: absolute;
+}
+
+.body,
+#body {
+  height: 15em;
+  width: 10em;
+  border-radius: 60%;
+  position: absolute;
+}
+
+#first-person {
+  .head {
+    background: green;
+    top: 32em;
+    left: 14.5em;
+  }
+  .body {
+    background: blue;
+    top: 35em;
+    left: 12em;
+  }
+}
+
+#second-person {
+  #head {
+    background: blue;
+    top: 32em;
+    left: 32.5em;
+  }
+  #body {
+    background: green;
+    top: 35em;
+    left: 30em;
+  }
+}
+button{
+  position:absolute;
+}
+.speechone{
+  border: 5px solid purple;
+  border-radius:10%;
+  background:white;
+  position:absolute;
+  top:25em;
+  left:20em;
+  height:5em;
+  width:5em;
+}
+.speechtwo{
+  border: 5px solid blue;
+  border-radius:10%;
+  background:white;
+  position:absolute;
+  top:25em;
+  left:27em;
+  height:5em;
+  width:5em;
+}
