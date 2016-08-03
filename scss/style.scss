@@ -1,0 +1,106 @@
+body {
+  background: url("https://www.vacationhomerentals.com/get_property_thumb4-24680.jpg");
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+//----------------------------------------------------------------
+.people {
+  height: 30rem;
+  width: 10rem;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -7rem;
+}
+
+.head {
+  border-radius: 100%;
+  height: 10rem;
+  width: 10rem;
+  box-shadow: 0 0 20px white;
+  border: 2px solid black;
+}
+
+.body {
+  border-radius: 100%;
+  height:20rem;
+  width: 10rem;
+  border: 2px solid gray;
+
+}
+//-----------------------------------------------------------------------
+button {
+  position: absolute;
+}
+
+#refresh-btn {
+  top: 2rem;
+}
+
+.show {
+    display: inline-block;
+}
+.hide {
+    display: none;
+}
+//----------------------------------------------------------------
+
+#first-person {
+  left: 10vw;
+
+  .head {
+    background: url("https://openclipart.org/image/2400px/svg_to_png/220907/Circles-In-Circle.png");
+    background-size: 100% 100%;
+  }
+
+  .body {
+    background: url("http://kingofwallpapers.com/blue/blue-005.jpg");
+    background-size: 100% 100%;
+  }
+}
+
+#second-person {
+  left: 70vw;
+
+   .head {
+    background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Color_circles_15_x_20.svg/1280px-Color_circles_15_x_20.svg.png");
+     background-size: 100% 100%;
+  }
+
+  .body {
+    background: url("https://africa.si.edu/exhibits/inscribing/images/eduimages/adinkra-cloth-fullLG.jpg");
+  }
+}
+
+//-----------------------------------------------------------------------
+.speech {
+  background: white;
+  font-family: sans-serif;
+  border: 5px solid red;
+  border-radius: 15px;
+  padding: 15px;
+  position: absolute;
+  display: none;
+
+  p {
+    margin: 0;
+  }
+
+  &::first-line {
+    font-weight: bold;
+  }
+}
+
+
+#first-person-speech {
+  left: 25vw;
+  top: 5vh;
+  border: 5px solid purple;
+}
+
+#second-person-speech {
+  right: 25vw;
+  top: 10vh;
+  border: 5px solid blue
+}
