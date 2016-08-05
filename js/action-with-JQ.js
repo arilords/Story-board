@@ -1,69 +1,115 @@
 /*-----------------------
     Initial Variables
 ------------------------*/
-// Buttons
-var continue_btn = document.getElementById("continue-btn");
-var refresh_btn = document.getElementById("refresh-btn");
 
 // Establish a counter
 var counter = 0;
 
-// People
-var head_one = document.getElementsByClassName('head')[0];
-var head_two = document.getElementsByClassName('head')[1];
+// Simplify html element selectors
+var speech1 = $('#first-person-speech');
+var speech2 = $('#second-person-speech');
 
-// Speech divs
-var speech_divs = document.getElementsByClassName("speech");
-var one_speech_div = document.getElementById("first-person-speech");
-var second_speech_div = document.getElementById("second-person-speech");
+var head1 =  $('#first-person > .head');
+var head2 =  $('#second-person > .head');
 
-/*----------------------
-        Dialog
------------------------*/
-var dialog = [
-    "<p> Hello, <br> How are you? </p>",
-    "<input class='input' type='text'><button class='input-btn'> Enter</button></input>",
-]
+// Dynamically created elements
+ var $button = "<button class='input-btn'> submit </button>";
+ var $input = "<input class='input-box' type='text'></input>";
+
+
+/*-------------------------
+      Event Handlers
+--------------------------*/
+// When a speech is too long...
+
+
+// When refresh is clicked...
+$('#refresh-btn').click( function() {
+
+    // Ensure counter is 0
+    counter = 0;
+    console.log(counter);
+
+    // Empty divs
+    speech1.html("");
+    speech2.html("");
+
+    // Disappear speech divs
+    speech1.attr('style', 'display: none');
+    speech2.attr('style', 'display: none');
+
+    // Log that refresh has successfully ran
+    console.log('program reset');
+});
+
+
+// When continue is clicked...
+$('#continue-btn').click( function() {
+
+
+    // Log current counter number
+    var console_counter =  counter + 1
+    console.log('Clicks on continue since: ' + console_counter );
+
+    // Increment counter variable
+    counter = counter + 1;
+
+    // Run dialog function
+    runDialog();
+});
+
 
 /*------------------------
         Functions
 ------------------------*/
+// Convert user inputs to text for speech boxes
 function inputToText() {
-    // Variable for js created button with class 'input-btn'
-    var submit = document.getElementsByClassName('input-btn')[0];
 
-    // When that button is clicked...
-    submit.addEventListener('click', function() {
-        // Variable for input
-        var input = document.getElementsByClassName('input')[0];
-        // Variable for input value (the text)
-        var user_input = input.value;
+    // When the dynamically created button is clicked...
+    $(document).on('click', '.input-btn', function() {
+
+        // Variable for speech input
+        var user_input = $('.input-box').val();
+
         // Log the user's input
-        console.log(user_input);
+        console.log('User Input: ' + user_input);
+
         // Replace input box with user's input as text
-        second_speech_div.innerHTML = '<p>' + user_input; + '</p>';
+        speech2.html('<p>' + user_input + '</p>');
     });
 }
-// Dialog Function
-function runDialog() {
 
+
+function runDialog() {
+    var d = dialog[counter-1];
     // Dialog dependent on counter (number of times continue is clicked)
     switch(counter) {
 
         case 1:
             // Inital dialog from person 1
-            one_speech_div.innerHTML = dialog[counter-1];
+            speech1.html(d);
             break;
 
         case 2:
             // Input and button added to speech 2
-            second_speech_div.innerHTML = dialog[counter-1];
+            speech2.html(d);
             inputToText();
             break;
-
+        case 3:
+            speech1.html( d );
+            break;
+        case 4:
+            speech2.html( d );
+            break;
+        case 5:
+            speech1.html( d );
+            break;
+        case 6:
+            speech2.html( d );
+            break;
         default:
-          one_speech_div.innerHTML = "<p>Speech complete</p>";
-          second_speech_div.innerHTML = "<p>Speech complete</p>";
+          speech1.html("<p>Speech complete</p>");
+          speech2.html("<p>Speech complete</p>");
       } // End of switch
 
 
@@ -72,18 +118,22 @@ function runDialog() {
 
       // Which speech div should appear
       if (even_or_odd === 1) {
-          one_speech_div.style.display = "inline-block";
-          second_speech_div.style.display = "none";
+          speech1.attr('style', 'display: inline-block');
+          speech2.attr( 'style', 'display: none');
 
-          head_one.style.boxShadow = "0 0 40px white";
-          head_two.style.boxShadow = "none";
+          head1.attr('style', 'box-shadow: 0 0 40px white');
+          head2.attr('style', 'box-shadow: none');
+
+          console.log( 'Person 1 : ' + speech1.text() );
       }
       else if (even_or_odd === 0) {
-          one_speech_div.style.display = "none";
-          second_speech_div.style.display = "inline-block";
+          speech1.attr('style', 'display: none');
+          speech2.attr( 'style', 'display: inline-block');
 
-          head_one.style.boxShadow = "none";
-          head_two.style.boxShadow = "0 0 40px white";
+          head1.attr('style', 'box-shadow: none');
+          head2.attr('style', 'box-shadow: 0 0 40px white');
+
+          console.log( 'Person 2 : ' + speech2.text() );
       }
       else {
           alert("error");
@@ -92,35 +142,21 @@ function runDialog() {
  } //End of run dialog function
 
 
-
-/*-------------------------
-      Events Handlers
---------------------------*/
-// When refresh is clicked...
-refresh_btn.addEventListener("click", function() {
-
-    // Ensure counter is 0
-    counter = 0;
-    console.log(counter);
-
-    // Disappear speech divs
-    one_speech_div.style.display = "none";
-    second_speech_div.style.display = "none";
-
-    // Log that refresh has successfully ran
-    console.log('program reset');
-});
+ /*----------------------
+     Dialog (Speech)
+ -----------------------*/
+var pre_dialog = [
+    " Hey ",
+    " Hey ",
+    " How are you? ",
+    $input + '<br>' + $button ,
+    " Glad to hear that <br> By the way, what's your favorite ice cream flavor? ",
+    $input + '<br>' + $button ,
+    " Nice, <br> let's go to the parlor then "
+]
+var dialog = [];
 
 
-// When continue is clicked...
-continue_btn.addEventListener("click", function() {
-    // Log current counter number
-    console.log(counter);
-+
-    // Increment counter variable
-    counter = counter + 1;
-
-    // Run dialog function
-    runDialog();
-
+$(pre_dialog).each(function( index,value ) {
+    dialog.push('<p>' + value + '</p>');
 });

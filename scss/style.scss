@@ -8,16 +8,25 @@
     src: url(../fonts/locust.tttf);
 }
 
+// Variables
+@mixin thin-border($color) {
+    border: 3px solid $color;
+}
 
+@mixin thick-border {
+    border: 5px solid white;
+}
+
+// ============================================================
 body {
   background: url("http://media.moddb.com/images/articles/1/181/180861/Galaxy_Rip.jpg");
   background-size: 100% 100%;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat';
 }
 //----------------------------------------------------------------
 .people {
@@ -32,53 +41,45 @@ body {
   border-radius: 100%;
   height: 10rem;
   width: 10rem;
-  // box-shadow: 0 0 20px white;
-  border: 2px solid black;
+  @include thin-border(black);
 }
 
 .body {
   border-radius: 100%;
   height:20rem;
   width: 10rem;
-  border: 2px solid gray;
+  @include thin-border(gray);
 
 }
 //-----------------------------------------------------------------------
 
 .controls{
   position: absolute;
+  top: 2rem;
   padding: 10px;
   background: black;
-  border: 3px solid white;
   color: white;
   border-radius: 15px;
+  font-size: 1.5em;
+  @include thick-border;
 
-  &:hover {
+  &:hover, &:focus {
       background: lighten(black, 20%);
       box-shadow: 0 0 20px white;
   }
   &:active {
       border: 4px solid white;
-      box-shadow: 0 0 30px white;
+      box-shadow: 0 0 20px white;
   }
 }
 
 
 #refresh-btn {
-    top: 3rem;
     left: 3rem;
 }
 #continue-btn {
-    top: 3rem;
     right: 3rem;
-    font-size: 1.5em;
-}
-
-.show {
-    display: inline-block;
-}
-.hide {
-    display: none;
+    font-weight: bold;
 }
 //----------------------------------------------------------------
 
@@ -89,7 +90,6 @@ body {
     background: url("https://openclipart.org/image/2400px/svg_to_png/220907/Circles-In-Circle.png");
     background-size: 100% 100%;
   }
-
   .body {
     background: url("http://kingofwallpapers.com/blue/blue-005.jpg");
     background-size: 100% 100%;
@@ -103,7 +103,6 @@ body {
     background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Color_circles_15_x_20.svg/1280px-Color_circles_15_x_20.svg.png");
      background-size: 100% 100%;
   }
-
   .body {
     background: url("https://africa.si.edu/exhibits/inscribing/images/eduimages/adinkra-cloth-fullLG.jpg");
   }
@@ -112,39 +111,71 @@ body {
 //-----------------------------------------------------------------------
 .speech {
   background: white;
-  font-family: sans-serif;
-  border: 5px solid red;
   border-radius: 15px;
   padding: 15px;
+  text-align: center;
   position: absolute;
   display: none;
-  font-family: conthrax;
-  font-weight: bold;
 
   p {
     margin: 0;
+    border-radius: 5px;
+    padding: 5px;
   }
 
-  &::first-letter {
-      font-size: 1.5em;
+  &::first-line {
+        font-weight: bold;
+  }
+
+  input {
+      border-radius: 5px;
+      padding: 5px;
+      margin-bottom: 5px;
+
+      &:focus {
+          box-shadow: 0 0 10px black;
+      }
+  }
+
+  button {
+      border-radius: 5px;
+      font-weight: bold;
+      background: black;
+      color: white;
+      font-size: 1em;
+
+    &:focus {
+        box-shadow: 0 0 10px black;
+    }
+    &:active {
+        color: gray;
+    }
   }
 }
 
 
 #first-person-speech {
-  left: 40vw;
+  left: 20vw;
   top: 15vh;
-  border: 5px solid white;
   background: url("https://wallpaperscraft.com/image/dark_circle_gray_black_9834_1920x1080.jpg");
   background-size: 100% 100%;
-  color: white
+  color: white;
+  @include thin-border(white);
+
+  p {
+      background: rgba(0,0,0,0.8);
+  }
 }
 
 #second-person-speech {
-  right: 40vw;
-  top: 25vh;
-  border: 5px solid black;
+  right: 20vw;
+  top: 20vh;
   background: url("http://www.tmwallpaper.com/mod/abstract-light/1920x1200/light-abstract-wide-wallpaper-1920x1200-010.jpg");
   background-size: 100% 100%;
   color: black;
+  @include thin-border(black);
+
+  p {
+      background: rgba(255,255,255,0.8);
+  }
 }

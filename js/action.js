@@ -116,7 +116,7 @@ refresh_btn.addEventListener("click", function() {
 continue_btn.addEventListener("click", function() {
     // Log current counter number
     console.log(counter);
-+
+
     // Increment counter variable
     counter = counter + 1;
 
