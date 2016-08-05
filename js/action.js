@@ -10,7 +10,7 @@ speechone.innerHTML = "<p> Hello </p>";
 var speechtwo = document.getElementById("speechtwo");
 speechtwo.innerHTML = "<p> Hello </p>";
 // on click of Back to beginnign button
-return_btn.addEventListner("click" , function(){
+return_btn.addEventListener("click" , function(){
   counter = 0
   console.log(counter);
   runDialog();
@@ -65,8 +65,8 @@ function runDialog(){
 
           // Make this a prompt for the reader
         case 7:
-          speechone.innerHTML = "<p>  </p>";
-          speechone.style.display = "block";
+          speechtwo.innerHTML = "<p>  </p>";
+          speechtwo.style.display = "block";
           speechtwo.style.display = "none";
           break;
 
@@ -82,3 +82,6 @@ function runDialog(){
           speechone.innerHTML = "<p> Speech Complete </p>";
     }
 }
+
+var even_or_odd = counter % 2
+console.log
