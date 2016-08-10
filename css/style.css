@@ -1,9 +1,9 @@
 @font-face {
   font-family: conthrax;
-  src: url(../fonts/conthrax.ttf); }
+  src: "../fonts/conthrax.ttf"; }
 @font-face {
   font-family: locust;
-  src: url(../fonts/locust.tttf); }
+  src: "../fonts/locust.ttf"; }
 body {
   background: url("http://media.moddb.com/images/articles/1/181/180861/Galaxy_Rip.jpg");
   background-size: 100% 100%;
@@ -59,19 +59,19 @@ body {
 #first-person {
   left: 10vw; }
   #first-person .head {
-    background: url("https://openclipart.org/image/2400px/svg_to_png/220907/Circles-In-Circle.png");
+    background: #00ccff;
     background-size: 100% 100%; }
   #first-person .body {
-    background: url("http://kingofwallpapers.com/blue/blue-005.jpg");
+    background: #0066cc;
     background-size: 100% 100%; }
 
 #second-person {
   right: 10vw; }
   #second-person .head {
-    background: url("http://previews.123rf.com/images/kistochka/kistochka1103/kistochka110300008/9129778-Abstract-background-from-color-stains-and-halftones-with-circles-Stock-Vector.jpg");
+    background: #6666ff;
     background-size: 100% 100%; }
   #second-person .body {
-    background: url("https://static1.squarespace.com/static/5459ec52e4b04d305f68f1ed/t/548a96e1e4b0a10ad41ef12f/1418368738802/Pattern14.jpg"); }
+    background: #666699; }
 
 .speech {
   background: white;

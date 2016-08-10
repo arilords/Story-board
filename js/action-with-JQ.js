@@ -12,15 +12,15 @@ var speech2 = $('#second-person-speech');
 var head1 =  $('#first-person > .head');
 var head2 =  $('#second-person > .head');
 
-// Dynamically created elements
- var $button = "<button class='input-btn'> submit </button>";
- var $input = "<input class='input-box' type='text'></input>";
+
 
 
 /*-------------------------
       Event Handlers
 --------------------------*/
 // When a speech is too long...
+// Need to create this function
+
 
 
 // When refresh is clicked...
@@ -46,10 +46,9 @@ $('#refresh-btn').click( function() {
 // When continue is clicked...
 $('#continue-btn').click( function() {
 
-
     // Log current counter number
-    var console_counter =  counter + 1
-    console.log('Clicks on continue since: ' + console_counter );
+    var counter_from_one =  counter + 1
+    console.log('Clicks on continue since beginning: ' + counter_from_one );
 
     // Increment counter variable
     counter = counter + 1;
@@ -62,84 +61,96 @@ $('#continue-btn').click( function() {
 /*------------------------
         Functions
 ------------------------*/
-// Convert user inputs to text for speech boxes
-function inputToText() {
-
-    // When the dynamically created button is clicked...
-    $(document).on('click', '.input-btn', function() {
-
-        // Variable for speech input
-        var user_input = $('.input-box').val();
-
-        // Log the user's input
-        console.log('User Input: ' + user_input);
-
-        // Replace input box with user's input as text
-        speech2.html('<p>' + user_input + '</p>');
-    });
-}
-
 
 function runDialog() {
+
+    // Simpler variable to access dialog array
     var d = dialog[counter-1];
-    // Dialog dependent on counter (number of times continue is clicked)
-    switch(counter) {
+    console.log('What d equals : ' + d);
 
-        case 1:
-            // Inital dialog from person 1
-            speech1.html(d);
-            break;
+    // Check if the item includes an input tag
+    if (d.search('input') != -1) {
+        inputToText();
+    }
+    else {
 
-        case 2:
-            // Input and button added to speech 2
-            speech2.html(d);
-            inputToText();
-            break;
-        case 3:
-            speech1.html( d );
-            break;
-        case 4:
-            speech2.html( d );
-            break;
-        case 5:
-            speech1.html( d );
-            break;
-        case 6:
-            speech2.html( d );
-            break;
-        default:
-          speech1.html("<p>Speech complete</p>");
-          speech2.html("<p>Speech complete</p>");
-      } // End of switch
+          // Test evenness or oddness of counter, 0 means even, 1 means odd
+          var even_or_odd = counter % 2;
+
+          // Which speech div should appear
+          if (even_or_odd === 1) {
+              speech1.html( d );
+              speech1.attr('style', 'display: inline-block');
+              console.log( 'Person 1 : ' + speech1.text() );
+
+              speech2.attr( 'style', 'display: none');
+
+              head1.attr('style', 'box-shadow: 0 0 40px white');
+              head2.attr('style', 'box-shadow: none');
+          }
+          else if (even_or_odd === 0) {
+              speech2.html( d );
+              speech2.attr( 'style', 'display: inline-block');
+              console.log( 'Person 2 : ' + speech2.text() );
+
+              speech1.attr('style', 'display: none');
+
+              head1.attr('style', 'box-shadow: none');
+              head2.attr('style', 'box-shadow: 0 0 40px white');
+          }
+          else {
+              alert("error");
+          } // End of if else statement
+
+      } // End of initial else statement
+    } //End of run dialog function
 
 
-      // Test evenness or oddness of counter, 0 means even, 1 means odd
-      var even_or_odd = counter % 2;
+ // Convert user inputs to text for speech boxes
+ function inputToText() {
+     var d = dialog[counter-1];
+     console.log('input to text initiated');
 
-      // Which speech div should appear
-      if (even_or_odd === 1) {
-          speech1.attr('style', 'display: inline-block');
-          speech2.attr( 'style', 'display: none');
+     // Styling
+     speech2.attr( 'style', 'display: inline-block');
+     speech1.attr('style', 'display: none');
 
-          head1.attr('style', 'box-shadow: 0 0 40px white');
-          head2.attr('style', 'box-shadow: none');
+     head2.attr('style', 'box-shadow: 0 0 40px white');
+     head1.attr('style', 'box-shadow: none');
 
-          console.log( 'Person 1 : ' + speech1.text() );
-      }
-      else if (even_or_odd === 0) {
-          speech1.attr('style', 'display: none');
-          speech2.attr( 'style', 'display: inline-block');
+    // Dynamically created elements
+    var $button = document.createElement('button');
+        $button.className = 'input-btn';
+        $button.innerHTML = 'submit';
+    var $input = document.createElement('input');
+        $input.className = 'input-box';
 
-          head1.attr('style', 'box-shadow: none');
-          head2.attr('style', 'box-shadow: 0 0 40px white');
+    //  Add dynamic input and button
+    speech2.append($input);
+    speech2.append($button);
 
-          console.log( 'Person 2 : ' + speech2.text() );
-      }
-      else {
-          alert("error");
-      } // End of if else statement
+     // When the dynamically created button is clicked...
+     $(document).on('click', '.input-btn', function() {
 
- } //End of run dialog function
+         console.log('input btn was clicked');
+         // Variable for speech input
+         var user_input = $('.input-box').val();
+
+         // Log the user's input
+         console.log('User Input: ' + user_input);
+
+        //  FIX: Trying to remove the input + button before recreation leads to a jquery error
+         // Remove input and button
+         speech2.remove( $('input') );
+         speech2.remove( $('button') );
+
+         // Replace input box with user's input as text
+         speech2.html('<p>' + user_input + '</p>');
+
+
+     });
+ }
+
 
 
  /*----------------------
@@ -149,13 +160,14 @@ var pre_dialog = [
     " Hey ",
     " Hey ",
     " How are you? ",
-    $input + '<br>' + $button ,
-    " Glad to hear that <br> By the way, what's your favorite ice cream flavor? ",
-    $input + '<br>' + $button ,
+    " input + button " ,
+    " Glad to hear that <br> I've been doing well with my ice cream business ",
+    " Really? <br> I thought you were just joking, its wonderful you have that now",
+    " Yeah, <br> by the way, <br> what's your favorite flavor of ice cream?" ,
+    " input + button " ,
     " Nice, <br> let's go to the parlor then "
 ]
 var dialog = [];
-
 
 $(pre_dialog).each(function( index,value ) {
     dialog.push('<p>' + value + '</p>');
