@@ -23,33 +23,35 @@ body {
 }
 
 #first-person {
+  position:absolute;
   .head {
     background: green;
-    top: 32em;
+    top: 30em;
     left: 14.5em;
   }
   .body {
     background: blue;
-    top: 35em;
+    top: 33em;
     left: 12em;
   }
 }
 
 #second-person {
+  position:absolute;
   #head {
     background: blue;
-    top: 32em;
+    top: 30em;
     left: 32.5em;
   }
   #body {
     background: green;
-    top: 35em;
+    top: 33em;
     left: 30em;
   }
 }
 #return{
   position:absolute;
-  
+
 }
 #speechone{
   border: 5px solid purple;

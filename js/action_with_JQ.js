@@ -8,14 +8,12 @@ $("#speechone").css('display', 'block');
 $("#speechtwo").html("<p> Hello </p>");
 $("#speechtw").css('display', 'block');
 }
-else{
-  // runDialog();
-}
+
 
 $("#return").click(function(){
   counter = 0;
   console.log(counter);
-  runDialog();
+  alert("Hello")
 });
 
 $("#continue").click(function(){
@@ -45,20 +43,25 @@ function runDialog(){
 
            // Make this a prompt for the reader
          case 6:
-            $("#speechtwo").html("<input></input>");
-             $("#speechtwo").html(input);
-           break;
+          $("#speechtwo").html("<p> Lets go to the movie then. </p>")
+          break;
 
          // Based on their answer of staying, going to the park, or going ot see a movie, change the background accordingly.
          case 7:
-           $("#speechone").html("<p> Alright then let's go. </p>");
-           $("#speechone").css('display', 'block');
-           $("#speechtwo").css('display', 'none');
-           break;
+            $("#speechone").html("<p> Alright then let's go. </p>");
+            $("#continue").click(function(){
+            $("#first-person, #second-person" ).animate({ "left": "+=1000px" }, "slow" );
+            });
+            break;
+        case 8:
+        $("body").css("background", "url('http://img.cinemablend.com/quill/2/8/3/f/6/4/283f649655a0e013be40632f951db69518cc8bfb.jpg')");
+        $("body").css("background-repeat" ,"no-repeat");
+        $("body").css("background-size" ,"100% 100%")
+        break;
 
          default:
-           $("#speechtwo").html("<p> Speech Complete </p>");
-           $("#speechtwo").css('display', 'block');
+          $("#speechtwo").html("<p> Speech Complete </p>");
+          $("#speechtwo").css('display', 'block');
           $("#speechone").html("<p> Speech Complete </p>");
     }
     var even_or_odd = counter % 2;

@@ -19,23 +19,27 @@ body {
   border-radius: 60%;
   position: absolute; }
 
-#first-person .head {
-  background: green;
-  top: 32em;
-  left: 14.5em; }
-#first-person .body {
-  background: blue;
-  top: 35em;
-  left: 12em; }
+#first-person {
+  position: absolute; }
+  #first-person .head {
+    background: green;
+    top: 30em;
+    left: 14.5em; }
+  #first-person .body {
+    background: blue;
+    top: 33em;
+    left: 12em; }
 
-#second-person #head {
-  background: blue;
-  top: 32em;
-  left: 32.5em; }
-#second-person #body {
-  background: green;
-  top: 35em;
-  left: 30em; }
+#second-person {
+  position: absolute; }
+  #second-person #head {
+    background: blue;
+    top: 30em;
+    left: 32.5em; }
+  #second-person #body {
+    background: green;
+    top: 33em;
+    left: 30em; }
 
 #return {
   position: absolute; }
