@@ -19,7 +19,7 @@
 
 // ============================================================
 body {
-  background: black;;
+  background: black;
   background-size: 100% 100%;
   height: 100vh;
   width: 100vw;
@@ -82,6 +82,34 @@ body {
     font-weight: bold;
 }
 //----------------------------------------------------------------
+
+#overlay {
+    z-index: 5;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: rgba(255,255,255,0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        color: black;
+        text-shadow: 0 0 5px white;
+
+        &:hover {
+            text-shadow: 0 0 10px white;;
+        }
+    }
+}
+
+
+
+
+
+
+//-----------------------------------------------------------------
 
 #first-person {
   left: 10vw;

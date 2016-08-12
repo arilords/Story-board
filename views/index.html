@@ -4,7 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- Google Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+        <!-- JQuery -->
+        <script
+    			  src="http://code.jquery.com/jquery-3.1.0.min.js"
+    			  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+    			  crossorigin="anonymous">
+        </script>
+
+        <!-- JQuery UI -->
+        <link rel="stylesheet" href="../jquery-ui/jquery-ui.min.css" />
+        <link rel="stylesheet" href="../jquery-ui/jquery-ui.theme.min.css" />
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+        <!-- Custom Stylesheet -->
         <link rel="stylesheet" href="../css/style.css" />
 
         <title> Ari Project </title>
@@ -14,6 +29,20 @@
         <!-- Buttons -->
         <button class="controls" id="refresh-btn"> Back to beginning </button>
         <button class="controls" id="continue-btn"> Continue </button>
+
+        <!-- Options Overlay -->
+        <div id="overlay">
+            <fieldset>
+                <legend> Select a Location: </legend>
+
+                <label for="r1">Ice Cream Shop</label>
+                <input type="radio" name="radioset" id="r1">
+                <label for="r2">Park</label>
+                <input type="radio" name="radioset" id="r2">
+
+                <button>   CONFIRM </button>
+            </fieldset>
+        </div>
 
 
         <!-- First Person -->
@@ -35,9 +64,14 @@
 
     </body>
 
-    <script
-			  src="http://code.jquery.com/jquery-3.1.0.min.js"
-			  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-			  crossorigin="anonymous"></script>
+    <!-- Tester -->
+    <script>
+    $(document).ready(function(){
+        $( "input" ).checkboxradio();
+        $( "fieldset" ).controlgroup();
+    });
+    </script>
+
+    <!-- Custom JS -->
     <script src="../js/action-with-JQ.js"></script>
 </html>

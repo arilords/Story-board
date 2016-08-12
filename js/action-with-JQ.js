@@ -19,6 +19,26 @@ var backgrounds = [
     'https://upload.wikimedia.org/wikipedia/commons/2/2f/Aria_-_Ice_Cream_Shop_-_2010-03-06.jpg'
 ]
 
+// Dialog
+var pre_dialog = [
+    newBackground,
+   " Hey ",
+   " Hey ",
+   " How are you? ",
+   " Good, I just finished a coding project, how about you? " ,
+   " Well I just opened an ice cream shop. <br> It was hard work so I'm exhausted, but glad that it's up and running ",
+   " Really? <br> I thought you were just joking, that's wonderful!",
+   " Yeah, <br> by the way, <br> what's your favorite flavor of ice cream?" ,
+   " Vanilla or cake batter " ,
+   " Nice, <br> let's go get some then ",
+   newBackground,
+   "some more words",
+   "some more words 2"
+]
+
+var dialog = [];
+
+// Reformating for dialog is handled in the 'Weirdo Placement' section
 
 
 /*------------------------
@@ -62,7 +82,10 @@ function runDialog() {
 
 
 function newBackground() {
-    console.log('b-counter : ' + b_counter);
+    // Log b_counter
+    console.log('background-counter : ' + b_counter);
+
+    // Change body background to url in current items of backgrounds array
     $('body').css( 'background', 'url(' + backgrounds[b_counter] + ')' );
 
     // Empty divs
@@ -83,26 +106,10 @@ function newBackground() {
 
 
 /*-------------------------
-      Event Handlers
+      Weirdo Placement
 --------------------------*/
-// Dialog
-var pre_dialog = [
-    newBackground,
-   " Hey ",
-   " Hey ",
-   " How are you? ",
-   " Good, I just finished a coding project, how about you? " ,
-   " Well I just opened an ice cream shop. <br> It was hard work so I'm exhausted, but glad that it's up and running ",
-   " Really? <br> I thought you were just joking, that's wonderful!",
-   " Yeah, <br> by the way, <br> what's your favorite flavor of ice cream?" ,
-   " Vanilla or cake batter " ,
-   " Nice, <br> let's go get some then ",
-   newBackground,
-   "some more words",
-   "some more words 2"
-]
 
-var dialog = [];
+// THIS HAS TO BE PLACED AFTER THE CREATION OF VARIABLES AND FUNCTIONS, BUT BEFORE EVENT HANDLERS
 
 // Reformat dialog
 $(pre_dialog).each( function( index,value ) {
@@ -116,6 +123,30 @@ $(pre_dialog).each( function( index,value ) {
        dialog.push( value );
    }
 
+});
+
+
+/*-------------------------
+      Event Handlers
+--------------------------*/
+
+/*  When continue is clicked...  */
+$('#continue-btn').click( function() {
+
+    // Log times continue has been clicked
+    var d_plus_1 = d_counter + 1
+    console.log('Clicks on continue: ' + d_plus_1 );
+
+    if (typeof dialog[d_counter] === 'string') {
+        // Run dialog function
+        runDialog();
+    } else {
+        // Variable name in dialog array turned into an executing function
+        dialog[d_counter]();
+    }
+
+    // Increment d_counter variable
+    d_counter += 1;
 });
 
 /*  When refresh is clicked...  */
@@ -141,25 +172,4 @@ $('#refresh-btn').click( function() {
 
     // Log that refresh has successfully ran
     console.log('program reset');
-});
-
-
-/*  When continue is clicked...  */
-$('#continue-btn').click( function() {
-
-    // Log times continue has been clicked
-    var d_plus_1 = d_counter + 1
-    console.log('Clicks on continue since beginning: ' + d_plus_1 );
-
-
-    if (typeof dialog[d_counter] === 'string') {
-        // Run dialog function
-        runDialog();
-    } else {
-        // Variable name in dialog array turned into an executing function
-        dialog[d_counter]();
-    }
-
-    // Increment d_counter variable
-    d_counter += 1;
 });
