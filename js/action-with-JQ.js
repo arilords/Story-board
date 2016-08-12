@@ -4,7 +4,6 @@
 
 // Establish counter
 var d_counter = 0;
-var b_counter = 0;
 
 // Simplify html element selectors
 var speech1 = $('#first-person-speech');
@@ -14,26 +13,23 @@ var head1 =  $('#first-person > .head');
 var head2 =  $('#second-person > .head');
 
 // Backgrounds
-var backgrounds = [
-    'http://media.moddb.com/images/articles/1/181/180861/Galaxy_Rip.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/2/2f/Aria_-_Ice_Cream_Shop_-_2010-03-06.jpg'
-]
+var Galaxy = 'http://media.moddb.com/images/articles/1/181/180861/Galaxy_Rip.jpg';
+var IceCreamShop = 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Aria_-_Ice_Cream_Shop_-_2010-03-06.jpg';
+var Park = 'https://upload.wikimedia.org/wikipedia/commons/a/a6/New-York_-_Bryant_Park.jpg';
 
 // Dialog
 var pre_dialog = [
-    newBackground,
    " Hey ",
    " Hey ",
-   " How are you? ",
-   " Good, I just finished a coding project, how about you? " ,
-   " Well I just opened an ice cream shop. <br> It was hard work so I'm exhausted, but glad that it's up and running ",
-   " Really? <br> I thought you were just joking, that's wonderful!",
-   " Yeah, <br> by the way, <br> what's your favorite flavor of ice cream?" ,
-   " Vanilla or cake batter " ,
-   " Nice, <br> let's go get some then ",
-   newBackground,
-   "some more words",
-   "some more words 2"
+   " It seems like it has been such a long time. How have you been? ",
+   " Great, I just finished a coding project, so I'm relaxing today.",
+   " Nice, I just opened up an ice cream shop. It was a lot of work, but it's finally up and running.",
+   " Amazing, what kind of flavors do you have? ",
+   "All kinds! Well not literally, haha, but we have a strong variety and have a rotating daily special where we experiment with new flavors",
+   "Great, well I was headed to the park but I definetly want to check out your shop",
+   " Let's check out both, today is my off day too. Where would you like to head first? >",
+   "some speech",
+   "some speech2"
 ]
 
 var dialog = [];
@@ -81,26 +77,21 @@ function runDialog() {
 } //End of run dialog function
 
 
-function newBackground() {
-    // Log b_counter
-    console.log('background-counter : ' + b_counter);
+function presentOptions() {
+    // Announce that this function has began to run
+    console.log('run presentOptions function');
 
-    // Change body background to url in current items of backgrounds array
-    $('body').css( 'background', 'url(' + backgrounds[b_counter] + ')' );
+    // variable for current item in dialog array
+    var d = dialog[d_counter];
 
-    // Empty divs
-    speech1.html("");
-    speech2.html("");
-
-    // Disappear speech divs
-    speech1.attr('style', 'display: none');
-    speech2.attr('style', 'display: none');
-
-    // Increase background counter
-    b_counter += 1;
+    // Change body background galaxy when stated as current dialog item
+    $('#overlay').css('display', 'flex');
 
     // Background change message to console
-    console.log('BACKGROUND CHANGE');
+    console.log('Option has been selected and background changed');
+
+    // Re-enable controls now that function has finished
+    $('.controls').disabled = true;
 }
 
 
@@ -113,15 +104,8 @@ function newBackground() {
 
 // Reformat dialog
 $(pre_dialog).each( function( index,value ) {
-   // When a speech is too long...
-   // Need to create this function
 
-   if ( typeof value === 'string') {
-       dialog.push('<p>' + value + '</p>');
-   }
-   else {
-       dialog.push( value );
-   }
+    dialog.push('<p> ' + value + ' </p>')
 
 });
 
@@ -137,12 +121,26 @@ $('#continue-btn').click( function() {
     var d_plus_1 = d_counter + 1
     console.log('Clicks on continue: ' + d_plus_1 );
 
-    if (typeof dialog[d_counter] === 'string') {
+    // Variable for current item in dialog array
+    var d = dialog[d_counter];
+
+    // If string DOESN'T include arrow (just regular dialog)...
+    if ( d.indexOf('>') == -1) {
         // Run dialog function
         runDialog();
-    } else {
-        // Variable name in dialog array turned into an executing function
-        dialog[d_counter]();
+    }
+    // If string DOES include arrow...
+    else {
+        runDialog();
+
+        // Disable controls so user doesn't skip presentOptions function
+        $('.controls').disabled = true;
+
+        // Give user time to read dialog and then run presentOptions function
+        // 3 seconds = 3000 milliseconds
+        setTimeout(function(){
+            presentOptions();
+        }, 3000);
     }
 
     // Increment d_counter variable
